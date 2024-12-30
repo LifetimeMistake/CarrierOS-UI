@@ -1,6 +1,12 @@
 local navigation = {}
 local basalt = require("/apis/basalt") -- we need basalt here
 
+function math.round(value, num)
+    num = num or 1
+    local power = math.pow(10, num)
+    return math.floor(value*power)/power
+end
+
 function navigation.page(main, buttonsFlex, api)
     local screenWidth, screenHeight = main:getSize()
 
@@ -35,26 +41,20 @@ function navigation.page(main, buttonsFlex, api)
         navFlex:addBreak()
         local posX = navFlex:addLabel():setText("X: 0"):setBackground(colors.lightGray):setForeground(colors.white):setSize(10,1):setTextAlign("center")
         navFlex:addBreak()
-        local posX = navFlex:addLabel():setText("Y: 0"):setBackground(colors.lightGray):setForeground(colors.white):setSize(10,1):setTextAlign("center")
+        local posY = navFlex:addLabel():setText("Y: 0"):setBackground(colors.lightGray):setForeground(colors.white):setSize(10,1):setTextAlign("center")
         navFlex:addBreak()
-        local posX = navFlex:addLabel():setText("Z: 0"):setBackground(colors.lightGray):setForeground(colors.white):setSize(10,1):setTextAlign("center")
-
-        navFlex:addBreak()
-        navFlex:addBreak()
-
-        navFlex:addLabel():setText("Heading:"):setSize(10, 1)
-        local heading = navFlex:addLabel():setText("0"):setBackground(colors.gray):setForeground(colors.white):setSize(3,1):setTextAlign("center")
+        local posZ = navFlex:addLabel():setText("Z: 0"):setBackground(colors.lightGray):setForeground(colors.white):setSize(10,1):setTextAlign("center")
 
         navFlex:addBreak()
         navFlex:addBreak()
 
         navFlex:addLabel():setText("Rotation:"):setSize(10, 1)
         navFlex:addBreak()
-        local roll = navFlex:addLabel():setText("Roll: 0"):setBackground(colors.red):setForeground(colors.white):setSize(11,1)
+        local roll = navFlex:addLabel():setText("Roll: 0"):setBackground(colors.red):setForeground(colors.white):setSize(15,1)
         navFlex:addBreak()
-        local pitch = navFlex:addLabel():setText("Pitch: 0"):setBackground(colors.green):setForeground(colors.white):setSize(11,1)
+        local pitch = navFlex:addLabel():setText("Pitch: 0"):setBackground(colors.green):setForeground(colors.white):setSize(15,1)
         navFlex:addBreak()
-        local yaw = navFlex:addLabel():setText("Yaw: 0"):setBackground(colors.blue):setForeground(colors.white):setSize(11,1)
+        local yaw = navFlex:addLabel():setText("Yaw: 0"):setBackground(colors.blue):setForeground(colors.white):setSize(15,1)
 
         navFlex:addBreak()
         navFlex:addBreak()
@@ -62,15 +62,44 @@ function navigation.page(main, buttonsFlex, api)
         navFlex:addLabel():setText("Velocity:"):setSize(10, 1)
         local velocity = navFlex:addLabel():setText("0"):setBackground(colors.gray):setForeground(colors.white):setSize(11,1)
 
+        local function updatePage()
+            while true do
+                local navigationInfo = api.navigation.getInfo()
+                
+                local position = navigationInfo.position
+                local vel = navigationInfo.velocity
+                local rotation = navigationInfo.rot
+        
+                posX:setText("X: " .. math.round(position.x, 2))
+                posY:setText("Y: " .. math.round(position.y, 2))
+                posZ:setText("Z: " .. math.round(position.z, 2))
+
+                roll:setText("Roll: " .. math.round(math.deg(rotation.z), 2))
+                pitch:setText("Pitch: " .. math.round(math.deg(rotation.x), 2))
+                yaw:setText("Yaw: " .. math.round(math.deg(rotation.y), 2))
+
+                local magnitude = math.round(math.sqrt(vel.x*vel.x + vel.y*vel.y + vel.z*vel.z), 2)
+                
+                velocity:setText(magnitude .. " m/s")
+
+                os.sleep(1)
+            end
+        end
+
+        local updatePageThread = main:addThread()
+
         local returnButton = page:addButton()
         returnButton:setBackground(colors.red)
         returnButton:setSize(3, 1)
         returnButton:setText("<")
 
         returnButton:onClick(function(self, event, button, x, y)
+            updatePageThread:stop()
             page:remove()
             page:remove()
         end)
+
+        updatePageThread:start(updatePage)
     end)
 end
 
