@@ -344,7 +344,7 @@ function diagnostics.page(main, buttonsFlex, api)
 
         local targetPositionBox = autopilotPage:addFrame()
         targetPositionBox:setPosition(2,2)
-        targetPositionBox:setSize("parent.w-2", 5)
+        targetPositionBox:setSize("parent.w-2", 6)
         targetPositionBox:setBorder(colors.black)
 
         local targetPosition = targetPositionBox:addLabel()
@@ -355,11 +355,26 @@ function diagnostics.page(main, buttonsFlex, api)
         targetPositionCoords:setText("150, 74, -1200"):setForeground(colors.white)
         targetPositionCoords:setPosition(2, 3)
 
-        autopilotPage:addLabel():setText("Route waypoints:"):setPosition(2,8)
+        local strategyLabel = targetPositionBox:addLabel():setText("Strategy: HOLD"):setForeground(colors.white):setPosition(2,5)
+
+        local haltFlex = autopilotPage:addFlexbox():setSize("parent.w-2", 1):setPosition(2,9):setBackground(colors.lightGray)
+
+        local haltButton = haltFlex:addButton():setText("HALT"):setBackground(colors.red):setForeground(colors.white):setSize(6,1)
+        local unhaltButton = haltFlex:addButton():setText("UNHALT"):setBackground(colors.orange):setForeground(colors.white):setSize(8,1)
+
+        haltButton:onClick(function ()
+            api.debug.halt()
+        end)
+
+        unhaltButton:onClick(function ()
+            api.debug.unhalt()
+        end)
+
+        autopilotPage:addLabel():setText("Route waypoints:"):setPosition(2,11)
 
         local waypointList = autopilotPage:addFrame()
-        waypointList:setPosition(2,9)
-        waypointList:setSize("parent.w-2", 10)
+        waypointList:setPosition(2,12)
+        waypointList:setSize("parent.w-2", 9)
 
         local waypointFlex = waypointList:addFlexbox()
         waypointFlex:setSize("parent.w", "parent.h")
@@ -412,22 +427,25 @@ function diagnostics.page(main, buttonsFlex, api)
     
                 local apiStabilizer = api.debug.getStabilizerState()
     
-                tX:setText("X: " .. math.floor(apiStabilizer.target_vector.x*1000)/100)
-                tY:setText("Y: " .. math.floor(apiStabilizer.target_vector.y*1000)/100)
-                tZ:setText("Z: " .. math.floor(apiStabilizer.target_vector.z*1000)/100)
+                tX:setText("X: " .. math.floor(apiStabilizer.target_vector.x*1000)/10)
+                tY:setText("Y: " .. math.floor(apiStabilizer.target_vector.y*1000)/10)
+                tZ:setText("Z: " .. math.floor(apiStabilizer.target_vector.z*1000)/10)
     
-                fX:setText("X: " .. math.floor(apiStabilizer.force_diff.x*1000)/100)
-                fY:setText("Y: " .. math.floor(apiStabilizer.force_diff.y*1000)/100)
-                fZ:setText("Z: " .. math.floor(apiStabilizer.force_diff.z*1000)/100)
+                fX:setText("X: " .. math.floor(apiStabilizer.force_diff.x*1000)/10)
+                fY:setText("Y: " .. math.floor(apiStabilizer.force_diff.y*1000)/10)
+                fZ:setText("Z: " .. math.floor(apiStabilizer.force_diff.z*1000)/10)
     
-                kX:setText("X: " .. math.floor(apiStabilizer.k_vector.x*1000)/100)
-                kY:setText("Y: " .. math.floor(apiStabilizer.k_vector.y*1000)/100)
-                kZ:setText("Z: " .. math.floor(apiStabilizer.k_vector.z*1000)/100)
+                kX:setText("X: " .. math.floor(apiStabilizer.k_vector.x*1000)/10)
+                kY:setText("Y: " .. math.floor(apiStabilizer.k_vector.y*1000)/10)
+                kZ:setText("Z: " .. math.floor(apiStabilizer.k_vector.z*1000)/10)
     
                 local targetPosition = api.autopilot.getTargetPosition()
     
-                targetPositionCoords:setText(math.floor(targetPosition.x*1000)/1000 .. " " .. math.floor(targetPosition.y*1000)/1000 .. " " .. math.floor(targetPosition.z*1000)/1000)
+                targetPositionCoords:setText(math.floor(targetPosition.x*10)/10 .. " " .. math.floor(targetPosition.y*10)/10 .. " " .. math.floor(targetPosition.z*10)/10)
     
+                local strategy = api.autopilot.getStrategy()
+                strategyLabel:setText("Strategy: " .. strategy)
+
                 waypointFlex:updateLayout()
 
                 os.sleep(1)
