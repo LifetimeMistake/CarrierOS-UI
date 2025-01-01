@@ -85,53 +85,53 @@ function diagnostics.page(main, buttonsFlex, api)
         -- Create Left Thrusters
         local mainFrontLeft = thrustersColumn1Flex:addFrame():setBackground(colors.lightGray)
         mainFrontLeft:setSize("parent.w", 2)
-        mainFrontLeftLB = mainFrontLeft:addLabel():setBackground(colors.lightGray):setText("Main Front Left: 72%") -- Random value
+        mainFrontLeftLB = mainFrontLeft:addLabel():setBackground(colors.lightGray):setText("Main Front Left: 0%")
         mainFrontLeftPB = mainFrontLeft:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(72)
+            :setProgress(0)
 
         local corrFrontLeft = thrustersColumn1Flex:addFrame():setBackground(colors.lightGray)
         corrFrontLeft:setSize("parent.w", 2)
-        corrFrontLeftLB = corrFrontLeft:addLabel():setBackground(colors.lightGray):setText("Corr Front Left: 54%")
+        corrFrontLeftLB = corrFrontLeft:addLabel():setBackground(colors.lightGray):setText("Corr Front Left: 0%")
         corrFrontLeftPB = corrFrontLeft:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(54)
+            :setProgress(0)
 
         local thrustLeft = thrustersColumn1Flex:addFrame():setBackground(colors.lightGray)
         thrustLeft:setSize("parent.w", 2)
-        thrustLeftLB = thrustLeft:addLabel():setBackground(colors.lightGray):setText("Thrust Left: 85%") -- Random value
+        thrustLeftLB = thrustLeft:addLabel():setBackground(colors.lightGray):setText("Thrust Left: 0%")
         thrustLeftPB = thrustLeft:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(85)
+            :setProgress(0)
 
         local corrBackLeft = thrustersColumn1Flex:addFrame():setBackground(colors.lightGray)
         corrBackLeft:setSize("parent.w", 2)
-        corrBackLeftLB = corrBackLeft:addLabel():setBackground(colors.lightGray):setText("Corr Back Left: 39%") -- Random value
+        corrBackLeftLB = corrBackLeft:addLabel():setBackground(colors.lightGray):setText("Corr Back Left: 0%")
         corrBackLeftPB = corrBackLeft:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(39)
+            :setProgress(0)
 
         local mainBackLeft = thrustersColumn1Flex:addFrame():setBackground(colors.lightGray)
         mainBackLeft:setSize("parent.w", 2)
-        mainBackLeftLB = mainBackLeft:addLabel():setBackground(colors.lightGray):setText("Main Back Left: 99%") -- Random value
+        mainBackLeftLB = mainBackLeft:addLabel():setBackground(colors.lightGray):setText("Main Back Left: 0%")
         mainBackLeftPB = mainBackLeft:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(99)
+            :setProgress(0)
 
         -- Updated Right Thrusters Variables
         local mainFrontRightLB, mainFrontRightPB
@@ -143,53 +143,53 @@ function diagnostics.page(main, buttonsFlex, api)
         -- Create Right Thrusters
         local mainFrontRight = thrustersColumn2Flex:addFrame():setBackground(colors.lightGray)
         mainFrontRight:setSize("parent.w", 2)
-        mainFrontRightLB = mainFrontRight:addLabel():setBackground(colors.lightGray):setText("Main Front Right: 66%") -- Random value
+        mainFrontRightLB = mainFrontRight:addLabel():setBackground(colors.lightGray):setText("Main Front Right: 0%")
         mainFrontRightPB = mainFrontRight:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(66)
+            :setProgress(0)
 
         local corrFrontRight = thrustersColumn2Flex:addFrame():setBackground(colors.lightGray)
         corrFrontRight:setSize("parent.w", 2)
-        corrFrontRightLB = corrFrontRight:addLabel():setBackground(colors.lightGray):setText("Corr Front Right: 28%") -- Random value
+        corrFrontRightLB = corrFrontRight:addLabel():setBackground(colors.lightGray):setText("Corr Front Right: 0%")
         corrFrontRightPB = corrFrontRight:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(28)
+            :setProgress(0)
 
         local thrustRight = thrustersColumn2Flex:addFrame():setBackground(colors.lightGray)
         thrustRight:setSize("parent.w", 2)
-        thrustRightLB = thrustRight:addLabel():setBackground(colors.lightGray):setText("Thrust Right: 90%") -- Random value
+        thrustRightLB = thrustRight:addLabel():setBackground(colors.lightGray):setText("Thrust Right: 0%")
         thrustRightPB = thrustRight:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(90)
+            :setProgress(0)
 
         local corrBackRight = thrustersColumn2Flex:addFrame():setBackground(colors.lightGray)
         corrBackRight:setSize("parent.w", 2)
-        corrBackRightLB = corrBackRight:addLabel():setBackground(colors.lightGray):setText("Corr Back Right: 3%") -- Random value
+        corrBackRightLB = corrBackRight:addLabel():setBackground(colors.lightGray):setText("Corr Back Right: 0%")
         corrBackRightPB = corrBackRight:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(3)
+            :setProgress(0)
 
         local mainBackRight = thrustersColumn2Flex:addFrame():setBackground(colors.lightGray)
         mainBackRight:setSize("parent.w", 2)
-        mainBackRightLB = mainBackRight:addLabel():setBackground(colors.lightGray):setText("Main Back Right: 77%") -- Random value
+        mainBackRightLB = mainBackRight:addLabel():setBackground(colors.lightGray):setText("Main Back Right: 0%")
         mainBackRightPB = mainBackRight:addProgressbar()
             :setPosition(1, 2)
             :setSize("parent.w", 1)
             :setBackgroundSymbol("-")
             :setBackground(colors.gray)
-            :setProgress(77)
+            :setProgress(0)
 
         local thrustersList = {
             {
@@ -425,23 +425,26 @@ function diagnostics.page(main, buttonsFlex, api)
                 mainFrontRightWeight:setText("FRONT RIGHT: " .. (thrustersLookup["main_front_right"].weight or 0))
                 mainBackRightWeight:setText("BACK RIGHT: " .. (thrustersLookup["main_back_right"].weight or 0))
     
-                local apiStabilizer = api.debug.getStabilizerState()
+                local stabilizerState = api.debug.getStabilizerState()
     
-                tX:setText("X: " .. math.floor(apiStabilizer.target_vector.x*1000)/10)
-                tY:setText("Y: " .. math.floor(apiStabilizer.target_vector.y*1000)/10)
-                tZ:setText("Z: " .. math.floor(apiStabilizer.target_vector.z*1000)/10)
+                tX:setText("X: " .. math.round(stabilizerState.target_vector.x, 2))
+                tY:setText("Y: " .. math.round(stabilizerState.target_vector.y, 2))
+                tZ:setText("Z: " .. math.round(stabilizerState.target_vector.z, 2))
     
-                fX:setText("X: " .. math.floor(apiStabilizer.force_diff.x*1000)/10)
-                fY:setText("Y: " .. math.floor(apiStabilizer.force_diff.y*1000)/10)
-                fZ:setText("Z: " .. math.floor(apiStabilizer.force_diff.z*1000)/10)
+                fX:setText("X: " .. math.round(stabilizerState.force_diff.x, 2))
+                fY:setText("Y: " .. math.round(stabilizerState.force_diff.y, 2))
+                fZ:setText("Z: " .. math.round(stabilizerState.force_diff.z, 2))
     
-                kX:setText("X: " .. math.floor(apiStabilizer.k_vector.x*1000)/10)
-                kY:setText("Y: " .. math.floor(apiStabilizer.k_vector.y*1000)/10)
-                kZ:setText("Z: " .. math.floor(apiStabilizer.k_vector.z*1000)/10)
+                kX:setText("X: " .. math.round(stabilizerState.k_vector.x, 2))
+                kY:setText("Y: " .. math.round(stabilizerState.k_vector.y, 2))
+                kZ:setText("Z: " .. math.round(stabilizerState.k_vector.z, 2))
     
                 local targetPosition = api.autopilot.getTargetPosition()
-    
-                targetPositionCoords:setText(math.floor(targetPosition.x*10)/10 .. " " .. math.floor(targetPosition.y*10)/10 .. " " .. math.floor(targetPosition.z*10)/10)
+                if targetPosition then
+                    targetPositionCoords:setText(string.format("%f.2 %f.2 %f.2", targetPosition.x, targetPosition.y, targetPosition.z))
+                else
+                    targetPositionCoords:setText("No target")
+                end
     
                 local strategy = api.autopilot.getStrategy()
                 strategyLabel:setText("Strategy: " .. strategy)
