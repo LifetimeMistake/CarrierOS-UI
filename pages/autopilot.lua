@@ -105,6 +105,12 @@ function autopilot.page(main, buttonsFlex, api)
         addButton:setForeground(colors.white)
         addButton:setText("Add")
 
+        local addTempButton = buttonFlex:addButton()
+        addTempButton:setSize(1,1)
+        addTempButton:setBackground(colors.blue)
+        addTempButton:setForeground(colors.white)
+        addTempButton:setText("+")
+
         local waypointList = autopilotPage:addFrame()
         waypointList:setPosition(2,7)
         if (screenWidth < 30) then
@@ -206,6 +212,76 @@ function autopilot.page(main, buttonsFlex, api)
             for _, wp in pairs(waypoints) do
                 addBoxWaypoint(wp.id, wp.name, wp.pos, wp.heading)
             end
+        end)
+
+        local addTempBox = autopilotPage:addFrame():hide()
+        addTempBox:setPosition(5, 5)
+        addTempBox:setSize("parent.w-8", "parent.h-6")
+        addTempBox:setBackground(colors.black)
+
+        local addTempBoxFlex = addTempBox:addFlexbox()
+        addTempBoxFlex:setSize("parent.w", "parent.h-1")
+        addTempBoxFlex:setBackground(colors.black)
+        addTempBoxFlex:setWrap("wrap")
+        addTempBoxFlex:setJustifyContent("center")
+        addTempBoxFlex:setPosition(1, 2)
+        
+        local nameTempInput = addTempBoxFlex:addInput()
+        nameTempInput:setDefaultText("New waypoint", colors.lightGray, colors.gray)
+        nameTempInput:setBackground(colors.gray):setForeground(colors.white)
+
+        addTempBoxFlex:addBreak()
+
+        local xTempInput = addTempBoxFlex:addInput():setInputType("number")
+        xTempInput:setDefaultText("X", colors.lightGray, colors.gray)
+        xTempInput:setBackground(colors.gray):setForeground(colors.white)
+        
+        local yTempInput = addTempBoxFlex:addInput():setInputType("number")
+        yTempInput:setDefaultText("Y", colors.lightGray, colors.gray)
+        yTempInput:setBackground(colors.gray):setForeground(colors.white)
+        
+        local zTempInput = addTempBoxFlex:addInput():setInputType("number")
+        zTempInput:setDefaultText("Z", colors.lightGray, colors.gray)
+        zTempInput:setBackground(colors.gray):setForeground(colors.white)
+       
+        addTempBoxFlex:addBreak()
+
+        local headingTempInput = addTempBoxFlex:addInput():setInputType("number")
+        headingTempInput:setDefaultText("Heading", colors.lightGray, colors.gray)
+        headingTempInput:setBackground(colors.gray):setForeground(colors.white)
+
+        addTempBoxFlex:addBreak()
+
+        local addTempBoxButton = addTempBoxFlex:addButton()
+        addTempBoxButton:setText("Add")
+        addTempBoxButton:setSize(5, 1)
+        addTempBoxButton:setForeground(colors.white)
+        addTempBoxButton:setBackground(colors.blue)
+        addTempBoxButton:setHorizontalAlign("center")
+
+        addTempBoxButton:onClick(function()
+            local heading = type(headingTempInput:getValue()) == "number" and headingTempInput:getValue() or nil
+
+            api.autopilot.addWaypoint(
+                nameTempInput:getValue(), 
+                { 
+                    x = xTempInput:getValue(), 
+                    y = yTempInput:getValue(), 
+                    z = zTempInput:getValue() 
+                }, 
+                heading
+            )
+            addTempBox:hide()
+        end)
+
+        addTempButton:onClick(function()
+            addTempBox:show()
+            local currentPosition = api.navigation.getInfo().position
+            xTempInput:setValue(math.floor(currentPosition.x))
+            yTempInput:setValue(math.floor(currentPosition.y))
+            zTempInput:setValue(math.floor(currentPosition.z))
+            headingTempInput:setValue("")
+            nameTempInput:setValue("")
         end)
 
         local returnButton = page:addButton()
